@@ -1,0 +1,101 @@
+<aura:component controller="LightningServerController">
+	<!-- common component -->
+	<c:bootstrapLoad />
+	<c:amd_common />
+
+	<!-- handler section -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler event="c:amd_evt_showPanel" action="{!c.showPanel}"/>
+
+	<!-- attribute section -->
+	<aura:attribute name="customer" type="AMD_Customer__c" />
+	<aura:attribute name="historyHeader" type="Map" />
+	<aura:attribute name="historyData" type="List" />
+
+	<!-- body -->
+	<div id="panelCustomer" class="container hide" style="padding-left:0;margin-left:0;">
+		<c:amd_sidemenu select="customer" />
+		<div style="padding:5px; padding-left:120px">
+			<div class="row">
+				<div class="col-sm-8">
+    		  		<c:amd_label caption="お名前" text1="{!v.customer.LastName__c+' '+v.customer.FirstName__c+ ' 様'}" fontSize1="25px" text2="{!v.customer.LastNameKana__c+' '+v.customer.FirstNameKana__c}" /> 
+    		  		<hr />
+    		  		<div class="row">
+    		  			<div class="col-sm-9">
+		   			  		<c:amd_label caption="最終購入日" text1="{!v.customer.LastPurchaseDate}" fontSize1="35px" /> 
+		   			  	</div>
+    		  			<div class="col-sm-3">
+		   			  		<c:amd_label caption="購入回数" text1="{!v.customer.NumberOfPurchase__c}" fontSize1="35px" /> 
+		   			  	</div>
+    		  		</div>
+    		  		<div class="row">
+    		  			<div class="col-sm-4">
+		   			  		<c:amd_label caption="会員ステータス" text1="{!v.customer.Status__c}" fontSize1="15px" /> 
+		   			  	</div>
+    		  			<div class="col-sm-4">
+		   			  		<c:amd_label caption="会員カード有無" text1="{!v.customer.CardFlg__c=='有り'?'有り':'なし'}" fontSize1="15px" /> 
+		   			  	</div>
+    		  			<div class="col-sm-4">
+		   			  		<c:amd_label caption="会員番号" text1="{!v.customer.Name}" fontSize1="15px" /> 
+		   			  	</div>
+    		  		</div>
+    		  		<div class="row">
+    		  			<div class="col-sm-12">
+		   			  		<c:amd_label caption="ご住所" text1="{!v.customer.Address__c}" fontSize1="15px" /> 
+		   			  	</div>
+    		  		</div>
+    		  		<div class="row">
+    		  			<div class="col-sm-4">
+		   			  		<c:amd_label caption="電話番号" text1="{!v.customer.Tel__c}" fontSize1="15px" /> 
+		   			  	</div>
+    		  			<div class="col-sm-8">
+		   			  		<c:amd_label caption="メールアドレス" text1="{!v.customer.Email__c}" fontSize1="15px" /> 
+		   			  	</div>
+    		  		</div>
+    		  		<hr/>
+    		  		<div class="row">
+    		  			<div class="col-sm-12">
+		   			  		<c:amd_label caption="メモ" text1="{!v.customer.Memo__c}" fontSize1="15px" /> 
+		   			  	</div>
+    		  		</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="panel panel-primary amd-purchase-history">
+		    			<div class="panel-body" style="padding:3;">
+		    			  	<p class="text-left" style="font-weight:bold;font-size:120%">
+		    			  		過去のご来店日：{!v.historyHeader.purchaseDate}
+		    			  	</p>
+		    			  	<p class="text-left">
+		    			  		店舗：{!v.historyHeader.store}<br/>
+		    			  		担当：{!v.historyHeader.tantosha}
+		    			  	</p>
+		    				<p class="text-center" style="font-weight:bold">
+		    					ご購入履歴
+		    			  	</p>
+		    			  	<div class="row">
+   		  						<aura:iteration items="{!v.historyData}" var="h">
+			    			  		<div class="col-sm-6">
+			    			  			{!h.product}
+			    			  		</div>
+		    				  		<div class="col-sm-6">
+		    				  			{!h.price}
+		    				  		</div>
+		    				  	</aura:iteration>
+		    			  	</div>
+		    			</div>
+		    			<hr/>
+   						<div class="row">
+							<div class="col-sm-6" style="padding-left:3px;padding-right:3px">
+								<button type="button" class="btn btn-default center-block amd-button">お見積り</button>
+							</div>
+							<div class="col-sm-6" style="padding-left:3px;padding-right:3px">
+								<button type="button" class="btn btn-default center-block amd-button">ヒアリング</button>
+							</div>
+			    		</div>
+		    		</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</aura:component>

@@ -1,0 +1,22 @@
+<aura:component controller="LightningServerController">
+	<!-- common component -->
+	<c:bootstrapLoad />
+	<c:amd_common />
+	<ltng:require scripts="/resource/Lightning_panelCustomerJS"/>
+
+	<!-- handler section -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler event="c:amd_evt_showPanel" action="{!c.showPanel}"/>
+
+	<!-- attribute section -->
+	<aura:attribute name="customer" type="AMD_Customer__c" />
+
+	<!-- body -->
+	<div id="panelCustomer" class="container hide" style="padding-left:0;margin-left:0;">
+		<c:amd_sidemenu select="customer" />
+		<!-- this div is used by React component-->
+		<div style="padding:5px; padding-left:120px">
+			<div id="content" />
+		</div>
+	</div>
+</aura:component>

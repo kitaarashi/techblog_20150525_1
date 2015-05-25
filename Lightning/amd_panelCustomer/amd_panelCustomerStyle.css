@@ -1,0 +1,27 @@
+.THIS.container {	width: 100%;
+	padding: 10px 0px;
+	margin: 0px;
+}
+
+.THIS .center {
+	margin: 0px auto;
+}
+
+.THIS .content {
+	max-width: 768px;
+	font-size: 12px;
+	color: #3c3d3e;
+}
+
+.THIS .amd-button{
+	width:130px;
+	background-color:#666666;
+	color:white
+}
+
+.THIS .amd-purchase-history{
+	border-color:#cccccc; 
+	width:300px;
+	padding:5px;
+	background-color:#F9F8F7
+}
